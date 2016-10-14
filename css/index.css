@@ -1,0 +1,97 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	font-family: "幼圆";
+}
+
+html,
+body {
+	height: 100%;
+	text-align: center;
+}
+
+#content {
+	position: relative;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.box {
+	display: inline-block;
+	width: 25%;
+	background-color: #aaa;
+	position: relative;
+	vertical-align: middle;
+	border-radius: 50%;
+	margin-top: 5%;
+}
+
+.box:before {
+	content: "";
+	display: inline-block;
+	padding-bottom: 100%;
+	/*width: .1px;*/
+	vertical-align: middle;
+}
+
+#time {
+	position: relative;
+	margin: 0 auto;
+}
+
+.hour {
+	display: block;
+	background-color: #bbb;
+	vertical-align: middle;
+	margin: 0 auto;
+	position: absolute;
+	border-radius: 30% 30% 0 0;
+	-webkit-transform-origin: bottom;
+	-moz-transform-origin: bottom;
+	-o-transform-origin: bottom;
+	-ms-transform-origin: bottom;
+	transform-origin: bottom;
+}
+
+.hour:before {}
+
+.min {
+	display: block;
+	background-color: #ccc;
+	vertical-align: middle;
+	margin: 0 auto;
+	position: absolute;
+	border-radius: 25% 25% 0 0;
+	-webkit-transform-origin: bottom;
+	-moz-transform-origin: bottom;
+	-o-transform-origin: bottom;
+	-ms-transform-origin: bottom;
+	transform-origin: bottom;
+}
+
+.min:before {}
+
+.second {
+	display: block;
+	background-color: #E52E32;
+	vertical-align: middle;
+	margin: 0 auto;
+	position: absolute;
+	border-radius: 100% 100% 0 0;
+	-webkit-transform-origin: bottom;
+	-moz-transform-origin: bottom;
+	-o-transform-origin: bottom;
+	-ms-transform-origin: bottom;
+	transform-origin: bottom;
+	
+}
+
+.point {
+	display: block;
+	background-color: #8B4513;
+	margin: 0 auto;
+	vertical-align: middle;
+	position: absolute;
+	border-radius: 100%;
+	top: -50%;
+}

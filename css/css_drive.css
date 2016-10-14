@@ -1,0 +1,144 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	font-family: "幼圆";
+}
+
+html,
+body {
+	height: 100%;
+	text-align: center;
+}
+
+#content {
+	position: relative;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.box {
+	display: inline-block;
+	width: 25%;
+	background-color: #aaa;
+	position: relative;
+	vertical-align: middle;
+	border-radius: 50%;
+	margin-top: 5%;
+}
+
+.box:before {
+	content: "";
+	display: inline-block;
+	padding-bottom: 100%;
+	/*width: .1px;*/
+	vertical-align: middle;
+}
+
+#time {
+	position: relative;
+	margin: 0 auto;
+}
+
+#time * {
+	transition: all linear 1s;
+}
+
+.hour {
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.hour:before {
+	content: " ";
+	background-color: #bbb;
+	position: absolute;
+	border-radius: 30% 30% 0 0;
+	/*设定转动的中心为底部居中的位置*/
+	-webkit-transform-origin: bottom;
+	-moz-transform-origin: bottom;
+	-o-transform-origin: bottom;
+	-ms-transform-origin: bottom;
+	transform-origin: bottom;
+	/*动画特效 21600秒跳动60帧 */
+	-webkit-animation: tick-tock 216000s steps(60, end) infinite;
+	-moz-animation: tick-tock 216000s steps(60, end) infinite;
+	-o-animation: tick-tock 216000s steps(60, end) infinite;
+	-ms-animation: tick-tock 216000s steps(60, end) infinite;
+	animation: tick-tock 216000s steps(60, end) infinite;
+}
+
+.min {
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.min:before {
+	content: " ";
+	position: absolute;
+	background-color: #ccc;
+	border-radius: 25% 25% 0 0;
+	-webkit-transform-origin: bottom;
+	-moz-transform-origin: bottom;
+	-o-transform-origin: bottom;
+	-ms-transform-origin: bottom;
+	transform-origin: bottom;
+	/*动画特效 3600秒跳动60帧 */
+	-webkit-animation: tick-tock 3600s steps(60, end) infinite;
+	-moz-animation: tick-tock 3600s steps(60, end) infinite;
+	-o-animation: tick-tock 3600s steps(60, end) infinite;
+	-ms-animation: tick-tock 3600s steps(60, end) infinite;
+	animation: tick-tock 3600s steps(60, end) infinite;
+}
+
+.second {
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.second:before {
+	content: " ";
+	background-color: #E52E32;
+	position: absolute;
+	border-radius: 100% 100% 0 0;
+	-webkit-transform-origin: bottom;
+	-moz-transform-origin: bottom;
+	-o-transform-origin: bottom;
+	-ms-transform-origin: bottom;
+	transform-origin: bottom;
+	/*动画特效 60秒跳动60帧 */
+	-webkit-animation: tick-tock 60s steps(60, end) infinite;
+	-moz-animation: tick-tock 60s steps(60, end) infinite;
+	-o-animation: tick-tock 60s steps(60, end) infinite;
+	-ms-animation: tick-tock 60s steps(60, end) infinite;
+	animation: tick-tock 60s steps(60, end) infinite;
+}
+
+
+/*动画驱动*/
+
+@keyframes tick-tock {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@-webkit-keyframes tick-tock {
+	to {
+		transform: rotate(360deg) translate3d(0, 0, 0);
+	}
+}
+
+.point {
+	display: block;
+	background-color: #8B4513;
+	margin: 0 auto;
+	vertical-align: middle;
+	position: absolute;
+	border-radius: 100%;
+}
