@@ -1,0 +1,18 @@
+* {
+	padding: 0px;
+	margin: 0px;
+}
+
+body {
+	width: 100%;
+	font-family: '幼圆';
+	font-size: 14px;
+}
+
+canvas {
+	width: 25%;
+	height: 25%;
+	border: 1px solid #ccc;
+	display: block;
+	float: left;
+}
