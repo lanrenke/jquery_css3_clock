@@ -5,6 +5,7 @@ window.onload = function() {
 	var canvas_3 = document.getElementById('canvas_3');
 	var canvas_4 = document.getElementById('canvas_4');
 	var canvas_5 = document.getElementById('canvas_5');
+	var canvas_6 = document.getElementById('canvas_6');
 
 	if(canvas_1.getContext) {
 		var canvas_content_1 = canvas_1.getContext('2d');
@@ -12,6 +13,7 @@ window.onload = function() {
 		var canvas_content_3 = canvas_3.getContext('2d');
 		var canvas_content_4 = canvas_4.getContext('2d');
 		var canvas_content_5 = canvas_5.getContext('2d');
+		var canvas_content_6 = canvas_6.getContext('2d');
 
 		canvas_content_1.fillStyle = "rgb(200,0,0)";
 		canvas_content_1.fillRect(10, 10, 55, 50);
@@ -50,15 +52,15 @@ window.onload = function() {
 
 		// 描边三角形
 		canvas_content_4.beginPath();
-		canvas_content_4.moveTo(125, 125);
-		canvas_content_4.lineTo(125, 45);
-		canvas_content_4.lineTo(45, 125);
+		canvas_content_4.moveTo(125.5, 125.5);
+		canvas_content_4.lineTo(125.5, 45.5);
+		canvas_content_4.lineTo(45.5, 125.5);
 		canvas_content_4.closePath();
 		canvas_content_4.stroke();
 
 		canvas_content_4.beginPath();
 		canvas_content_4.moveTo(185, 50);
-		canvas_content_4.arc(175, 50, 10, 100, Math.PI, false);
+		canvas_content_4.arc(175, 50, 10, 0, Math.PI, false);
 		canvas_content_4.stroke();
 
 		//圆形arc函数
@@ -81,6 +83,17 @@ window.onload = function() {
 				}
 			}
 		}
+
+		// 贝尔赛曲线
+		canvas_content_6.beginPath();
+		canvas_content_6.moveTo(75, 25);
+		canvas_content_6.quadraticCurveTo(25, 25, 25, 62.5);
+		canvas_content_6.quadraticCurveTo(25, 100, 50, 100);
+		canvas_content_6.quadraticCurveTo(50, 120, 30, 125);
+		canvas_content_6.quadraticCurveTo(60, 120, 65, 100);
+		canvas_content_6.quadraticCurveTo(125, 100, 125, 62.5);
+		canvas_content_6.quadraticCurveTo(125, 25, 75, 25);
+		canvas_content_6.stroke();
 
 	} else {
 		alert("您的浏览器不支持canvas！");
