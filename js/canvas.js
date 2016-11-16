@@ -6,6 +6,8 @@ window.onload = function() {
 	var canvas_4 = document.getElementById('canvas_4');
 	var canvas_5 = document.getElementById('canvas_5');
 	var canvas_6 = document.getElementById('canvas_6');
+	var canvas_7 = document.getElementById('canvas_7');
+	var canvas_8 = document.getElementById('canvas_8');
 
 	if(canvas_1.getContext) {
 		var canvas_content_1 = canvas_1.getContext('2d');
@@ -14,6 +16,8 @@ window.onload = function() {
 		var canvas_content_4 = canvas_4.getContext('2d');
 		var canvas_content_5 = canvas_5.getContext('2d');
 		var canvas_content_6 = canvas_6.getContext('2d');
+		var canvas_content_7 = canvas_7.getContext('2d');
+		var canvas_content_8 = canvas_8.getContext('2d');
 
 		canvas_content_1.fillStyle = "rgb(200,0,0)";
 		canvas_content_1.fillRect(10, 10, 55, 50);
@@ -94,6 +98,26 @@ window.onload = function() {
 		canvas_content_6.quadraticCurveTo(125, 100, 125, 62.5);
 		canvas_content_6.quadraticCurveTo(125, 25, 75, 25);
 		canvas_content_6.stroke();
+
+		//色块
+		for(var i = 0; i < 6; i++) {
+			for(var j = 0; j < 6; j++) {
+				canvas_content_7.fillStyle = 'rgb(' + Math.floor(255 - 42.5 * i) + ',' +
+					Math.floor(255 - 42.5 * j) + ',0)';
+				canvas_content_7.fillRect(j * 25, i * 25, 25, 25);
+			}
+		}
+
+		//圆环色块
+		for(var i = 0; i < 6; i++) {
+			for(var j = 0; j < 6; j++) {
+				canvas_content_8.strokeStyle = 'rgb(0,' + Math.floor(255 - 42.5 * i) + ',' +
+					Math.floor(255 - 42.5 * j) + ')';
+				canvas_content_8.beginPath();
+				canvas_content_8.arc(12.5 + j * 25, 12.5 + i * 25, 10, 0, Math.PI * 2, true);
+				canvas_content_8.stroke();
+			}
+		}
 
 	} else {
 		alert("您的浏览器不支持canvas！");
