@@ -9,6 +9,8 @@ window.onload = function() {
 	var canvas_7 = document.getElementById('canvas_7');
 	var canvas_8 = document.getElementById('canvas_8');
 	var canvas_9 = document.getElementById('canvas_9');
+	var canvas_10 = document.getElementById('canvas_10');
+	var canvas_11 = document.getElementById('canvas_11');
 
 	if(canvas_1.getContext) {
 		var canvas_content_1 = canvas_1.getContext('2d');
@@ -20,6 +22,8 @@ window.onload = function() {
 		var canvas_content_7 = canvas_7.getContext('2d');
 		var canvas_content_8 = canvas_8.getContext('2d');
 		var canvas_content_9 = canvas_9.getContext('2d');
+		var canvas_content_10 = canvas_10.getContext('2d');
+		var canvas_content_11 = canvas_11.getContext('2d');
 
 		canvas_content_1.fillStyle = "rgb(200,0,0)";
 		canvas_content_1.fillRect(10, 10, 55, 50);
@@ -157,9 +161,34 @@ window.onload = function() {
 			//由于上面设置了透明度，所以效果不明显,写在一个canvas的弊端，设置了全局变量
 			canvas_content_9.fillStyle = 'rgba(255,255,255,' + (i + 1) / 10 + ')';
 			for(var j = 0; j < 4; j++) {
-				canvas_content_9.fillRect(155+i*14,5+j*37.5,14,27.5);
+				canvas_content_9.fillRect(155 + i * 14, 5 + j * 37.5, 14, 27.5);
 			}
 		}
+
+		var canvas_img = new Image();
+		canvas_img.src = 'img/你的名字11.png';
+		canvas_img.onload = function() {
+			
+			var img = canvas_content_10.createPattern(canvas_img,'no-repeat');
+			canvas_content_10.fillStyle=img;
+			canvas_content_10.fillRect(0,0,100,100);
+//			canvas_content_10.drawImage(canvas_img, 0, 0);
+		}
+
+		//渐变
+		var lingrad = canvas_content_11.createLinearGradient(0, 0, 0, 150);
+		lingrad.addColorStop(0, '#00ABEB');
+		lingrad.addColorStop(0.5, '#fff');
+
+		var lingrad2 = canvas_content_11.createLinearGradient(0, 50, 0, 95);
+		lingrad2.addColorStop(0.5, '#000');
+		lingrad2.addColorStop(1, 'rgba(0,0,0,0)');
+
+		canvas_content_11.fillStyle = lingrad;
+		canvas_content_11.strokeStyle = lingrad2;
+
+		canvas_content_11.fillRect(10, 10, 130, 130);
+		canvas_content_11.strokeRect(50, 50, 50, 50);
 
 	} else {
 		alert("您的浏览器不支持canvas！");
