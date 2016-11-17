@@ -2,3 +2,6 @@
 使用css3和jquery做一个简单的自适应的时钟
 
 示例网址:[http://lomenck.com/Workprogram/css3](http://lomenck.com/Workprogram/css3/)
+
+2016-11-17
+学习canvas中，按照教程弄一遍代码
