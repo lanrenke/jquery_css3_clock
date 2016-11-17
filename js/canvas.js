@@ -1,29 +1,22 @@
 window.onload = function() {
 
 	var canvas_1 = document.getElementById('canvas_1');
-	var canvas_2 = document.getElementById('canvas_2');
-	var canvas_3 = document.getElementById('canvas_3');
-	var canvas_4 = document.getElementById('canvas_4');
-	var canvas_5 = document.getElementById('canvas_5');
-	var canvas_6 = document.getElementById('canvas_6');
-	var canvas_7 = document.getElementById('canvas_7');
-	var canvas_8 = document.getElementById('canvas_8');
-	var canvas_9 = document.getElementById('canvas_9');
-	var canvas_10 = document.getElementById('canvas_10');
-	var canvas_11 = document.getElementById('canvas_11');
 
 	if(canvas_1.getContext) {
 		var canvas_content_1 = canvas_1.getContext('2d');
-		var canvas_content_2 = canvas_2.getContext('2d');
-		var canvas_content_3 = canvas_3.getContext('2d');
-		var canvas_content_4 = canvas_4.getContext('2d');
-		var canvas_content_5 = canvas_5.getContext('2d');
-		var canvas_content_6 = canvas_6.getContext('2d');
-		var canvas_content_7 = canvas_7.getContext('2d');
-		var canvas_content_8 = canvas_8.getContext('2d');
-		var canvas_content_9 = canvas_9.getContext('2d');
-		var canvas_content_10 = canvas_10.getContext('2d');
-		var canvas_content_11 = canvas_11.getContext('2d');
+		var canvas_content_2 = document.getElementById('canvas_2').getContext('2d');
+		var canvas_content_3 = document.getElementById('canvas_3').getContext('2d');
+		var canvas_content_4 = document.getElementById('canvas_4').getContext('2d');
+		var canvas_content_5 = document.getElementById('canvas_5').getContext('2d');
+		var canvas_content_6 = document.getElementById('canvas_6').getContext('2d');
+		var canvas_content_7 = document.getElementById('canvas_7').getContext('2d');
+		var canvas_content_8 = document.getElementById('canvas_8').getContext('2d');
+		var canvas_content_9 = document.getElementById('canvas_9').getContext('2d');
+		var canvas_content_10 = document.getElementById('canvas_10').getContext('2d');
+		var canvas_content_11 = document.getElementById('canvas_11').getContext('2d');
+		var canvas_content_12 = document.getElementById('canvas_12').getContext('2d');
+		var canvas_content_13 = document.getElementById('canvas_13').getContext('2d');
+		var canvas_content_14 = document.getElementById('canvas_14').getContext('2d');
 
 		canvas_content_1.fillStyle = "rgb(200,0,0)";
 		canvas_content_1.fillRect(10, 10, 55, 50);
@@ -168,11 +161,11 @@ window.onload = function() {
 		var canvas_img = new Image();
 		canvas_img.src = 'img/你的名字11.png';
 		canvas_img.onload = function() {
-			
-			var img = canvas_content_10.createPattern(canvas_img,'no-repeat');
-			canvas_content_10.fillStyle=img;
-			canvas_content_10.fillRect(0,0,100,100);
-//			canvas_content_10.drawImage(canvas_img, 0, 0);
+
+			var img = canvas_content_10.createPattern(canvas_img, 'no-repeat');
+			canvas_content_10.fillStyle = img;
+			//			canvas_content_10.fillRect(0,0,100,100);
+			canvas_content_10.drawImage(canvas_img, 0, 0);
 		}
 
 		//渐变
@@ -189,6 +182,71 @@ window.onload = function() {
 
 		canvas_content_11.fillRect(10, 10, 130, 130);
 		canvas_content_11.strokeRect(50, 50, 50, 50);
+
+		//sava和restore函数
+		canvas_content_12.fillRect(0, 0, 150, 150); // 使用默认设置绘制一个矩形
+		canvas_content_12.save(); // 保存默认状态
+
+		canvas_content_12.fillStyle = '#09F' // 在原有配置基础上做改变
+		canvas_content_12.fillRect(15, 15, 120, 120); // 使用新的设置绘制一个矩形
+
+		canvas_content_12.save(); // 保存当前状态
+		canvas_content_12.fillStyle = '#FFF' // 再次改变配置
+		canvas_content_12.globalAlpha = 0.5;
+		canvas_content_12.fillRect(30, 30, 90, 90); // 使用新的配置绘制一个矩形
+
+		canvas_content_12.restore(); // 重新加载之前的状态
+		canvas_content_12.fillRect(45, 45, 60, 60); // 使用上一次的配置绘制一个矩形
+
+		canvas_content_12.restore(); // 加载默认配置
+		canvas_content_12.fillRect(60, 60, 30, 30); // 使用加载的配置绘制一个矩形
+
+		canvas_content_13.fillRect(0, 0, 300, 200);
+		for(var i = 0; i < 3; i++) {
+			for(var j = 0; j < 3; j++) {
+				canvas_content_13.save();
+				canvas_content_13.strokeStyle = "#9CFF00";
+				canvas_content_13.translate(50 + j * 100, 50 + i * 100);
+				drawSpirograph(canvas_content_13, 20 * (j + 2) / (j + 1), -8 * (i + 3) / (i + 1), 10);
+				canvas_content_13.restore();
+			}
+		}
+
+		function drawSpirograph(ctx, R, r, O) {
+			var x1 = R - O;
+			var y1 = 0;
+			var i = 1;
+			ctx.beginPath();
+			ctx.moveTo(x1, y1);
+			do {
+				if(i > 20000) break;
+				//这里的函数，还不懂
+				var x2 = (R + r) * Math.cos(i * Math.PI / 72) - (r + O) * Math.cos(((R + r) / r) * (i * Math.PI / 72))
+				var y2 = (R + r) * Math.sin(i * Math.PI / 72) - (r + O) * Math.sin(((R + r) / r) * (i * Math.PI / 72))
+				ctx.lineTo(x2, y2);
+				x1 = x2;
+				y1 = y2;
+				i++;
+			} while (x2 != R - O && y2 != 0);
+			ctx.stroke();
+		}
+
+		//圆形斑点
+		canvas_content_14.translate(75, 75);
+
+		for(var i = 1; i < 6; i++) { // Loop through rings (from inside to out)
+			canvas_content_14.save();
+			canvas_content_14.fillStyle = 'rgb(' + (51 * i) + ',' + (255 - 51 * i) + ',255)';
+
+			for(var j = 0; j < i * 6; j++) { // draw individual dots
+				canvas_content_14.rotate(Math.PI * 2 / (i * 6));
+				canvas_content_14.beginPath();
+				canvas_content_14.arc(0, i * 12.5, 5, 0, Math.PI * 2, true);
+				canvas_content_14.fill();
+			}
+
+			canvas_content_14.restore();
+		}
 
 	} else {
 		alert("您的浏览器不支持canvas！");
