@@ -8,6 +8,7 @@ window.onload = function() {
 	var canvas_6 = document.getElementById('canvas_6');
 	var canvas_7 = document.getElementById('canvas_7');
 	var canvas_8 = document.getElementById('canvas_8');
+	var canvas_9 = document.getElementById('canvas_9');
 
 	if(canvas_1.getContext) {
 		var canvas_content_1 = canvas_1.getContext('2d');
@@ -18,6 +19,7 @@ window.onload = function() {
 		var canvas_content_6 = canvas_6.getContext('2d');
 		var canvas_content_7 = canvas_7.getContext('2d');
 		var canvas_content_8 = canvas_8.getContext('2d');
+		var canvas_content_9 = canvas_9.getContext('2d');
 
 		canvas_content_1.fillStyle = "rgb(200,0,0)";
 		canvas_content_1.fillRect(10, 10, 55, 50);
@@ -116,6 +118,46 @@ window.onload = function() {
 				canvas_content_8.beginPath();
 				canvas_content_8.arc(12.5 + j * 25, 12.5 + i * 25, 10, 0, Math.PI * 2, true);
 				canvas_content_8.stroke();
+			}
+		}
+
+		// 画背景
+		canvas_content_9.fillStyle = '#FD0';
+		canvas_content_9.fillRect(0, 0, 75, 75);
+		canvas_content_9.fillStyle = '#6C0';
+		canvas_content_9.fillRect(75, 0, 75, 75);
+		canvas_content_9.fillStyle = '#09F';
+		canvas_content_9.fillRect(0, 75, 75, 75);
+		canvas_content_9.fillStyle = '#F30';
+		canvas_content_9.fillRect(75, 75, 75, 75);
+		canvas_content_9.fillStyle = '#FFF';
+
+		// 设置透明度值
+		canvas_content_9.globalAlpha = 0.2;
+
+		// 画半透明圆
+		for(var i = 0; i < 7; i++) {
+			canvas_content_9.beginPath();
+			canvas_content_9.arc(75, 75, 10 + 10 * i, 0, Math.PI * 2, true);
+			canvas_content_9.fill();
+		}
+
+		// 画背景
+		canvas_content_9.fillStyle = 'rgb(255,221,0)';
+		canvas_content_9.fillRect(150, 0, 150, 37.5);
+		canvas_content_9.fillStyle = 'rgb(102,204,0)';
+		canvas_content_9.fillRect(150, 37.5, 150, 37.5);
+		canvas_content_9.fillStyle = 'rgb(0,153,255)';
+		canvas_content_9.fillRect(150, 75, 150, 37.5);
+		canvas_content_9.fillStyle = 'rgb(255,51,0)';
+		canvas_content_9.fillRect(150, 112.5, 150, 37.5);
+
+		// 画半透明矩形
+		for(var i = 0; i < 10; i++) {
+			//由于上面设置了透明度，所以效果不明显,写在一个canvas的弊端，设置了全局变量
+			canvas_content_9.fillStyle = 'rgba(255,255,255,' + (i + 1) / 10 + ')';
+			for(var j = 0; j < 4; j++) {
+				canvas_content_9.fillRect(155+i*14,5+j*37.5,14,27.5);
 			}
 		}
 
