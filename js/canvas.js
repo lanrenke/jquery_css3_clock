@@ -17,6 +17,7 @@ window.onload = function() {
 		var canvas_content_12 = document.getElementById('canvas_12').getContext('2d');
 		var canvas_content_13 = document.getElementById('canvas_13').getContext('2d');
 		var canvas_content_14 = document.getElementById('canvas_14').getContext('2d');
+		var canvas_content_15 = document.getElementById('canvas_15').getContext('2d');
 
 		canvas_content_1.fillStyle = "rgb(200,0,0)";
 		canvas_content_1.fillRect(10, 10, 55, 50);
@@ -249,6 +250,54 @@ window.onload = function() {
 
 			canvas_content_14.restore();
 		}
+
+		//动画
+		var sun = new Image();
+		var moon = new Image();
+		var earth = new Image();
+
+		function init() {
+			sun.src = 'https://mdn.mozillademos.org/files/1456/Canvas_sun.png';
+			moon.src = 'https://mdn.mozillademos.org/files/1443/Canvas_moon.png';
+			earth.src = 'https://mdn.mozillademos.org/files/1429/Canvas_earth.png';
+			window.requestAnimationFrame(draw);
+		}
+
+		function draw() {
+
+			canvas_content_15.globalCompositeOperation = 'destination-over';
+			canvas_content_15.clearRect(0, 0, 150, 150); // clear canvas
+
+			canvas_content_15.fillStyle = 'rgba(0,0,0,0.4)';
+			canvas_content_15.strokeStyle = 'rgba(0,153,255,0.4)';
+			canvas_content_15.save();
+			canvas_content_15.translate(75, 75);
+
+			// Earth
+			var time = new Date();
+			canvas_content_15.rotate(((2 * Math.PI) / 60) * time.getSeconds() + ((2 * Math.PI) / 60000) * time.getMilliseconds());
+			canvas_content_15.translate(52.5, 0);
+			canvas_content_15.fillRect(0, -6, 12, 30); // Shadow
+			canvas_content_15.drawImage(earth, -12, -12);
+
+			// Moon
+			canvas_content_15.save();
+			canvas_content_15.rotate(((2 * Math.PI) / 6) * time.getSeconds() + ((2 * Math.PI) / 6000) * time.getMilliseconds());
+			canvas_content_15.translate(0, 28.5);
+			canvas_content_15.drawImage(moon, -1.525, -1.525);
+			canvas_content_15.restore();
+
+			canvas_content_15.restore();
+
+			canvas_content_15.beginPath();
+			canvas_content_15.arc(75, 75, 52.5, 0, Math.PI * 2, false); // Earth orbit
+			canvas_content_15.stroke();
+
+			canvas_content_15.drawImage(sun, 0, 0, 150, 150);
+
+			window.requestAnimationFrame(draw);
+		}
+		init();
 
 	} else {
 		alert("您的浏览器不支持canvas！");
