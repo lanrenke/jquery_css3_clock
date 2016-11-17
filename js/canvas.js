@@ -201,6 +201,7 @@ window.onload = function() {
 		canvas_content_12.restore(); // 加载默认配置
 		canvas_content_12.fillRect(60, 60, 30, 30); // 使用加载的配置绘制一个矩形
 
+		//translate
 		canvas_content_13.fillRect(0, 0, 300, 200);
 		for(var i = 0; i < 3; i++) {
 			for(var j = 0; j < 3; j++) {
@@ -239,6 +240,7 @@ window.onload = function() {
 			canvas_content_14.fillStyle = 'rgb(' + (51 * i) + ',' + (255 - 51 * i) + ',255)';
 
 			for(var j = 0; j < i * 6; j++) { // draw individual dots
+				//旋转角度这里 Math.PI*2就是整一个圆的大小，除于多少个圆点，这样就可以对应的旋转多少角度。
 				canvas_content_14.rotate(Math.PI * 2 / (i * 6));
 				canvas_content_14.beginPath();
 				canvas_content_14.arc(0, i * 12.5, 5, 0, Math.PI * 2, true);
