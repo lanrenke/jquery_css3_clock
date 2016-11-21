@@ -19,6 +19,7 @@ window.onload = function() {
 		var canvas_content_14 = document.getElementById('canvas_14').getContext('2d');
 		var canvas_content_15 = document.getElementById('canvas_15').getContext('2d');
 		var canvas_content_16 = document.getElementById('canvas_16').getContext('2d');
+		var canvas_content_17 = document.getElementById('canvas_17').getContext('2d');
 
 		canvas_content_1.fillStyle = "rgb(200,0,0)";
 		canvas_content_1.fillRect(10, 10, 55, 50);
@@ -151,7 +152,6 @@ window.onload = function() {
 		canvas_content_9.fillRect(150, 75, 150, 37.5);
 		canvas_content_9.fillStyle = 'rgb(255,51,0)';
 		canvas_content_9.fillRect(150, 112.5, 150, 37.5);
-		
 
 		// 画半透明矩形
 		for(var i = 0; i < 10; i++) {
@@ -285,7 +285,7 @@ window.onload = function() {
 			// Moon
 			canvas_content_15.save();
 			canvas_content_15.rotate(((2 * Math.PI) / 6) * time.getSeconds() + ((2 * Math.PI) / 6000) * time.getMilliseconds());
-			canvas_content_15.translate(0, 28.5);
+			canvas_content_15.translate(20, 25);
 			canvas_content_15.drawImage(moon, -15, -5);
 			canvas_content_15.restore();
 
@@ -398,6 +398,52 @@ window.onload = function() {
 			window.requestAnimationFrame(clock);
 		}
 		window.requestAnimationFrame(clock);
+
+		//高级动画
+		var canvas_17 = document.getElementById('canvas_17');
+		var canvas_ball_17 = {
+			x: 150,
+			y: 70,
+			vx: 5,
+			vy: 2,
+			radius: 25,
+			color: 'blue',
+			draw: function() {
+				canvas_content_17.beginPath();
+				canvas_content_17.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+				canvas_content_17.closePath();
+				canvas_content_17.fillStyle = this.color;
+				canvas_content_17.fill();
+			}
+		};
+
+		function draw() {
+			//拖尾特效
+			canvas_content_17.fillStyle = 'rgba(255,255,255,0.3)';
+			canvas_content_17.fillRect(0, 0, canvas_17.width, canvas_17.height);
+			//默认
+//			canvas_content_17.clearRect(0, 0, canvas_17.width, canvas_17.height);
+			canvas_ball_17.draw();
+			if(canvas_ball_17.y + canvas_ball_17.vy > canvas_17.height || canvas_ball_17.y + canvas_ball_17.vy < 0) {
+				canvas_ball_17.vy = -canvas_ball_17.vy;
+			}
+			if(canvas_ball_17.x + canvas_ball_17.vx > canvas_17.width || canvas_ball_17.x + canvas_ball_17.vx < 0) {
+				canvas_ball_17.vx = -canvas_ball_17.vx;
+			}
+			canvas_ball_17.x += canvas_ball_17.vx;
+			canvas_ball_17.y += canvas_ball_17.vy;
+
+			raf = window.requestAnimationFrame(draw);
+		}
+		canvas_17.addEventListener('mouseover', function(e) {
+			raf = window.requestAnimationFrame(draw);
+		});
+
+		canvas_17.addEventListener("mouseout", function(e) {
+			window.cancelAnimationFrame(raf);
+		});
+		canvas_ball_17.draw();
+
 	} else {
 		alert("您的浏览器不支持canvas！");
 	}
