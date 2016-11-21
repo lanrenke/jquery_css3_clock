@@ -18,6 +18,7 @@ window.onload = function() {
 		var canvas_content_13 = document.getElementById('canvas_13').getContext('2d');
 		var canvas_content_14 = document.getElementById('canvas_14').getContext('2d');
 		var canvas_content_15 = document.getElementById('canvas_15').getContext('2d');
+		var canvas_content_16 = document.getElementById('canvas_16').getContext('2d');
 
 		canvas_content_1.fillStyle = "rgb(200,0,0)";
 		canvas_content_1.fillRect(10, 10, 55, 50);
@@ -129,7 +130,7 @@ window.onload = function() {
 		canvas_content_9.fillStyle = '#F30';
 		canvas_content_9.fillRect(75, 75, 75, 75);
 		canvas_content_9.fillStyle = '#FFF';
-
+		canvas_content_9.save();
 		// 设置透明度值
 		canvas_content_9.globalAlpha = 0.2;
 
@@ -139,7 +140,8 @@ window.onload = function() {
 			canvas_content_9.arc(75, 75, 10 + 10 * i, 0, Math.PI * 2, true);
 			canvas_content_9.fill();
 		}
-
+		//由于上面设置了透明度，所以必须使用一下save和restore，设置了全局变量会影响到下一个元素的效果
+		canvas_content_9.restore();
 		// 画背景
 		canvas_content_9.fillStyle = 'rgb(255,221,0)';
 		canvas_content_9.fillRect(150, 0, 150, 37.5);
@@ -149,10 +151,10 @@ window.onload = function() {
 		canvas_content_9.fillRect(150, 75, 150, 37.5);
 		canvas_content_9.fillStyle = 'rgb(255,51,0)';
 		canvas_content_9.fillRect(150, 112.5, 150, 37.5);
+		
 
 		// 画半透明矩形
 		for(var i = 0; i < 10; i++) {
-			//由于上面设置了透明度，所以效果不明显,写在一个canvas的弊端，设置了全局变量
 			canvas_content_9.fillStyle = 'rgba(255,255,255,' + (i + 1) / 10 + ')';
 			for(var j = 0; j < 4; j++) {
 				canvas_content_9.fillRect(155 + i * 14, 5 + j * 37.5, 14, 27.5);
@@ -251,7 +253,7 @@ window.onload = function() {
 			canvas_content_14.restore();
 		}
 
-		//动画
+		//动画 太阳系
 		var sun = new Image();
 		var moon = new Image();
 		var earth = new Image();
@@ -277,28 +279,125 @@ window.onload = function() {
 			var time = new Date();
 			canvas_content_15.rotate(((2 * Math.PI) / 60) * time.getSeconds() + ((2 * Math.PI) / 60000) * time.getMilliseconds());
 			canvas_content_15.translate(52.5, 0);
-			canvas_content_15.fillRect(0, -6, 12, 30); // Shadow
-			canvas_content_15.drawImage(earth, -12, -12);
+			canvas_content_15.fillRect(-6, -18, 14, 23); // Shadow
+			canvas_content_15.drawImage(earth, -18, -18);
 
 			// Moon
 			canvas_content_15.save();
 			canvas_content_15.rotate(((2 * Math.PI) / 6) * time.getSeconds() + ((2 * Math.PI) / 6000) * time.getMilliseconds());
 			canvas_content_15.translate(0, 28.5);
-			canvas_content_15.drawImage(moon, -1.525, -1.525);
+			canvas_content_15.drawImage(moon, -15, -5);
 			canvas_content_15.restore();
 
 			canvas_content_15.restore();
 
 			canvas_content_15.beginPath();
-			canvas_content_15.arc(75, 75, 52.5, 0, Math.PI * 2, false); // Earth orbit
+			canvas_content_15.arc(75, 75, 48, 0, Math.PI * 2, false); // Earth orbit
 			canvas_content_15.stroke();
 
 			canvas_content_15.drawImage(sun, 0, 0, 150, 150);
 
 			window.requestAnimationFrame(draw);
+
 		}
 		init();
 
+		//时钟
+		function clock() {
+			var canvas_time_16 = new Date();
+			canvas_content_16.save();
+			canvas_content_16.clearRect(0, 0, 150, 150);
+			canvas_content_16.translate(75, 75);
+			canvas_content_16.scale(0.4, 0.4);
+			canvas_content_16.rotate(-Math.PI / 2);
+			canvas_content_16.strokeStyle = "black";
+			canvas_content_16.fillStyle = "white";
+			canvas_content_16.lineWidth = 8;
+			canvas_content_16.lineCap = "round";
+
+			// Hour marks
+			canvas_content_16.save();
+			for(var i = 0; i < 12; i++) {
+				canvas_content_16.beginPath();
+				canvas_content_16.rotate(Math.PI / 6);
+				canvas_content_16.moveTo(100, 0);
+				canvas_content_16.lineTo(120, 0);
+				canvas_content_16.stroke();
+			}
+			canvas_content_16.restore();
+			// Minute marks
+			canvas_content_16.save();
+			canvas_content_16.lineWidth = 5;
+			for(i = 0; i < 60; i++) {
+				if(i % 5 != 0) {
+					canvas_content_16.beginPath();
+					canvas_content_16.moveTo(117, 0);
+					canvas_content_16.lineTo(120, 0);
+					canvas_content_16.stroke();
+				}
+				canvas_content_16.rotate(Math.PI / 30);
+			}
+			canvas_content_16.restore();
+
+			var sec = canvas_time_16.getSeconds();
+			var min = canvas_time_16.getMinutes();
+			var hr = canvas_time_16.getHours();
+			hr = hr >= 12 ? hr - 12 : hr;
+
+			canvas_content_16.fillStyle = "black";
+
+			// write Hours
+			canvas_content_16.save();
+			canvas_content_16.rotate(hr * (Math.PI / 6) + (Math.PI / 360) * min + (Math.PI / 21600) * sec)
+			canvas_content_16.lineWidth = 14;
+			canvas_content_16.beginPath();
+			canvas_content_16.moveTo(-20, 0);
+			canvas_content_16.lineTo(80, 0);
+			canvas_content_16.stroke();
+			canvas_content_16.restore();
+
+			// write Minutes
+			canvas_content_16.save();
+			canvas_content_16.rotate((Math.PI / 30) * min + (Math.PI / 1800) * sec)
+			canvas_content_16.lineWidth = 10;
+			canvas_content_16.beginPath();
+			canvas_content_16.moveTo(-28, 0);
+			canvas_content_16.lineTo(112, 0);
+			canvas_content_16.stroke();
+			canvas_content_16.restore();
+
+			// Write seconds
+			canvas_content_16.save();
+			canvas_content_16.rotate(sec * Math.PI / 30);
+			canvas_content_16.strokeStyle = "#D40000";
+			canvas_content_16.fillStyle = "#D40000";
+			canvas_content_16.lineWidth = 6;
+			canvas_content_16.beginPath();
+			canvas_content_16.moveTo(-30, 0);
+			canvas_content_16.lineTo(83, 0);
+			canvas_content_16.stroke();
+			canvas_content_16.beginPath();
+			canvas_content_16.arc(0, 0, 10, 0, Math.PI * 2, true);
+			canvas_content_16.fill();
+			canvas_content_16.beginPath();
+			canvas_content_16.arc(95, 0, 10, 0, Math.PI * 2, true);
+			canvas_content_16.stroke();
+			canvas_content_16.fillStyle = "rgba(0,0,0,0)";
+			canvas_content_16.arc(0, 0, 3, 0, Math.PI * 2, true);
+			canvas_content_16.fill();
+			canvas_content_16.restore();
+
+			canvas_content_16.beginPath();
+			canvas_content_16.lineWidth = 14;
+			canvas_content_16.strokeStyle = '#325FA2';
+			canvas_content_16.arc(0, 0, 142, 0, Math.PI * 2, true);
+			canvas_content_16.stroke();
+
+			canvas_content_16.restore();
+
+			window.requestAnimationFrame(clock);
+		}
+		window.requestAnimationFrame(clock);
 	} else {
 		alert("您的浏览器不支持canvas！");
 	}
