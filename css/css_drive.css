@@ -142,3 +142,22 @@ body {
 	position: absolute;
 	border-radius: 100%;
 }
+
+
+.content_mid {
+	width: 90%;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: -20%;
+}
+#get_time_ipnt {
+	width: 25%;
+	padding: 10px;
+	font-size: 16px;
+	background-color:#f7c0e4 ;
+}
+#get_time {
+	padding: 10px;
+	background-color: #42dadc;
+	border-radius: 3px;
+}

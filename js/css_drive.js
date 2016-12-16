@@ -75,5 +75,16 @@ $(document).ready(function() {
 	$(window).resize(function() {
 		time_set();
 	});
-
+	//获取当前时间
+	$(document).on('click', '#get_time', function() {
+		var time = new Date();
+		var time_year = time.getFullYear(); //年
+		var time_month = time.getMonth() + 1; //月 月份是从0开始算的
+		var time_day = time.getDate(); //那一天
+		var time_hours = time.getHours(); //小时
+		var time_min = time.getMinutes(); //分
+		var time_second = time.getSeconds(); //秒
+		var str = time_year + "年" + time_month + "月" + time_day + "日" + time_hours + "时" + time_min + "分" + time_second + "秒";
+		$('#time').val(str);
+	});
 });
