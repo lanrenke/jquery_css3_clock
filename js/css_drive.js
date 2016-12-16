@@ -85,6 +85,6 @@ $(document).ready(function() {
 		var time_min = time.getMinutes(); //分
 		var time_second = time.getSeconds(); //秒
 		var str = time_year + "年" + time_month + "月" + time_day + "日" + time_hours + "时" + time_min + "分" + time_second + "秒";
-		$('#time').val(str);
+		$('#get_time_ipnt').val(str);
 	});
 });
