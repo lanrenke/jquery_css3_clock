@@ -78,6 +78,7 @@ $(document).ready(function() {
 
 	//监控
 	$(window).resize(function() {
+		$("head").find('style').remove();
 		time_set();
 	});
 	//获取当前时间
