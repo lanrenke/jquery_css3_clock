@@ -1,30 +1,35 @@
 $(document).ready(function() {
+
 	//按照目前系统时间进行时分秒针定位
 	var time = new Date();
 	var seconds = time.getSeconds();
 	var min = time.getMinutes();
 	var hours = time.getHours();
 	var sdegree = seconds * 6;
-	var mdegree = min * 6;
-	var hdegree = hours * 30;
-	var srotate = "rotate(" + sdegree + "deg)"
-	var mrotate = "rotate(" + mdegree + "deg)"
-	var hrotate = "rotate(" + hdegree + "deg)"
-	$(".second").css({
-		"-moz-transform": srotate,
-		"-webkit-transform": srotate,
-		"-ms-transform": srotate
-	});
-	$(".min").css({
-		"-moz-transform": mrotate,
-		"-webkit-transform": mrotate,
-		"-ms-transform": mrotate
-	});
-	$(".hour").css({
-		"-moz-transform": hrotate,
-		"-webkit-transform": hrotate,
-		"-ms-transform": hrotate
-	});
+	var mdegree = min * 6 + (seconds / 10);
+	var hdegree = hours * 30 + (min / 2);
+	setInterval(function() {
+
+		var srotate = "rotate(" + sdegree + "deg)"
+		var mrotate = "rotate(" + mdegree + "deg)"
+		var hrotate = "rotate(" + hdegree + "deg)"
+		$(".second").css({
+			"-moz-transform": srotate,
+			"-webkit-transform": srotate,
+			"-ms-transform": srotate
+		});
+		$(".min").css({
+			"-moz-transform": mrotate,
+			"-webkit-transform": mrotate,
+			"-ms-transform": mrotate
+		});
+		$(".hour").css({
+			"-moz-transform": hrotate,
+			"-webkit-transform": hrotate,
+			"-ms-transform": hrotate
+		});
+	}, 1000);
+
 	//设置各个元素的样式，达到自适应效果（应该还有其他方法）
 	function time_set() {
 		var circle_width = parseFloat($(".box").width());
