@@ -62,11 +62,11 @@ body {
 	-ms-transform-origin: bottom;
 	transform-origin: bottom;
 	/*动画特效 21600秒跳动60帧 */
-	-webkit-animation: tick-tock 216000s steps(60, end) infinite;
-	-moz-animation: tick-tock 216000s steps(60, end) infinite;
-	-o-animation: tick-tock 216000s steps(60, end) infinite;
-	-ms-animation: tick-tock 216000s steps(60, end) infinite;
-	animation: tick-tock 216000s steps(60, end) infinite;
+	-webkit-animation: tick-tock 21600s steps(60, end) infinite;
+	-moz-animation: tick-tock 21600s steps(60, end) infinite;
+	-o-animation: tick-tock 21600s steps(60, end) infinite;
+	-ms-animation: tick-tock 21600s steps(60, end) infinite;
+	animation: tick-tock 21600s steps(60, end) infinite;
 }
 
 .min {
